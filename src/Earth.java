@@ -4,8 +4,17 @@ public class Earth {
 	static double phi;
 	static double a = 149598261000.0;
 	static double e = 0.01671123;	
-	public Earth(int date) {	
-		
+	public Earth(Date date) {	
+		Earth.phi = 259;
+		double r = (a*Earth.sqrt(1-e*e))/(1 + e*Earth.cos(24-phi));
+		Earth.x = r * Earth.cos(phi);
+		Earth.y = r * Earth.sin(phi);
+		int time = 0;   ///// add time counter
+		int step = 500;
+		int numberOfSteps = (int) (time/step);
+		for(int i = 0; i < numberOfSteps; i++) {
+			Earth.nextStep(step);
+		}
 	}
 	public static void nextStep(int step){
 		double r = Math.sqrt(x*x+y*y);
